@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harshini Chavva — Geopolitical Research Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1f35;
+    --ink: #1a3a5c;
+    --gold: #c9a84c;
+    --cream: #f5f0e8;
+    --mist: #dde4ef;
+    --text: #2c3e50;
+    --light: #f9f7f3;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lora', Georgia, serif;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 3rem;
+    background: rgba(13,31,53,0.96);
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: .04em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: .75rem;
+    color: var(--mist);
+    text-decoration: none;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    transition: color .25s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 8%;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 80% 50%, rgba(201,168,76,.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 50% at 20% 80%, rgba(26,58,92,.4) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-grid-lines {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(201,168,76,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-text { position: relative; z-index: 2; }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: .72rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    color: #fff;
+    line-height: 1.05;
+    font-weight: 900;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-tagline {
+    margin-top: 1.2rem;
+    font-size: 1rem;
+    color: var(--mist);
+    max-width: 38ch;
+    line-height: 1.75;
+  }
+  .hero-ctas {
+    margin-top: 2.5rem;
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn {
+    padding: .75rem 1.8rem;
+    font-family: 'DM Mono', monospace;
+    font-size: .75rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all .25s;
+    display: inline-block;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: bold;
+  }
+  .btn-primary:hover { background: #e0bb5e; transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid rgba(201,168,76,.5);
+    color: var(--gold);
+  }
+  .btn-outline:hover { border-color: var(--gold); background: rgba(201,168,76,.08); }
+
+  .hero-stats {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; gap: 2rem;
+    border-left: 1px solid rgba(201,168,76,.2);
+    padding-left: 3rem;
+  }
+  .stat { }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: var(--gold);
+    line-height: 1;
+    font-weight: 700;
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-top: .3rem;
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 6rem 8%; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: .75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--ink);
+    margin-bottom: 2.5rem;
+    line-height: 1.2;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-left { }
+  .about-text {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--text);
+    margin-bottom: 1.2rem;
+  }
+  .about-right { }
+  .interests-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .75rem;
+    margin-top: 1rem;
+  }
+  .interest-tag {
+    padding: .6rem 1rem;
+    background: var(--navy);
+    color: var(--mist);
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem;
+    letter-spacing: .08em;
+    border-left: 2px solid var(--gold);
+  }
+
+  /* ── ARTICLES ── */
+  .articles { background: var(--light); }
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .article-card {
+    background: #fff;
+    border: 1px solid rgba(26,58,92,.1);
+    padding: 2rem;
+    position: relative;
+    transition: transform .25s, box-shadow .25s;
+    overflow: hidden;
+  }
+  .article-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--gold);
+  }
+  .article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(13,31,53,.1);
+  }
+  .article-date {
+    font-family: 'DM Mono', monospace;
+    font-size: .68rem;
+    letter-spacing: .1em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: .75rem;
+  }
+  .article-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+    font-weight: 700;
+    margin-bottom: .75rem;
+    line-height: 1.35;
+  }
+  .article-excerpt {
+    font-size: .88rem;
+    color: #5a6a7a;
+    line-height: 1.7;
+  }
+  .article-link {
+    display: inline-block;
+    margin-top: 1.2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: .68rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 1px;
+    transition: color .2s;
+  }
+  .article-link:hover { color: var(--gold); }
+
+  /* ── SKILLS ── */
+  .skills { background: var(--navy); }
+  .skills .section-title { color: #fff; }
+  .skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+  }
+  .skill-group { }
+  .skill-group-title {
+    font-family: 'DM Mono', monospace;
+    font-size: .72rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .skill-item {
+    font-size: .9rem;
+    color: var(--mist);
+    padding: .4rem 0;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    line-height: 1.5;
+  }
+
+  /* ── EXPERIENCE ── */
+  .experience { background: var(--cream); }
+  .timeline { max-width: 800px; }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+  .timeline-item::after {
+    content: '';
+    position: absolute;
+    left: 140px;
+    top: 0; bottom: -3rem;
+    width: 1px;
+    background: rgba(201,168,76,.2);
+  }
+  .timeline-item:last-child::after { display: none; }
+  .timeline-date {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem;
+    letter-spacing: .08em;
+    color: var(--gold);
+    text-align: right;
+    padding-top: .2rem;
+  }
+  .timeline-content { padding-left: 2rem; position: relative; }
+  .timeline-content::before {
+    content: '';
+    position: absolute; left: -.4rem; top: .45rem;
+    width: .8rem; height: .8rem;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+  .timeline-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+    font-weight: 700;
+    margin-bottom: .25rem;
+  }
+  .timeline-org {
+    font-family: 'DM Mono', monospace;
+    font-size: .72rem;
+    letter-spacing: .08em;
+    color: #7a8a9a;
+    text-transform: uppercase;
+    margin-bottom: .75rem;
+  }
+  .timeline-bullets {
+    list-style: none;
+    font-size: .9rem;
+    line-height: 1.8;
+    color: #4a5a6a;
+  }
+  .timeline-bullets li::before {
+    content: '— ';
+    color: var(--gold);
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--navy);
+    text-align: center;
+  }
+  .contact .section-title { color: #fff; }
+  .contact-sub {
+    color: var(--mist);
+    font-size: 1rem;
+    max-width: 50ch;
+    margin: 0 auto 2.5rem;
+  }
+  .contact-links {
+    display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #070f1a;
+    text-align: center;
+    padding: 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: .68rem;
+    letter-spacing: .1em;
+    color: #3a4a5a;
+    text-transform: uppercase;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow { animation: fadeUp .7s ease both; }
+  .hero-name    { animation: fadeUp .7s .15s ease both; }
+  .hero-tagline { animation: fadeUp .7s .3s ease both; }
+  .hero-ctas    { animation: fadeUp .7s .45s ease both; }
+  .hero-stats   { animation: fadeUp .7s .6s ease both; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Harshini Chavva</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#articles">Writing</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-lines"></div>
+  <div class="hero-text">
+    <div class="hero-eyebrow">Geopolitical Research Analyst · India</div>
+    <h1 class="hero-name">Harshini<br><em>Chavva</em></h1>
+    <p class="hero-tagline">
+      Analyzing South Asian political risk, multilateral dynamics, and digital statecraft. Translating open-source intelligence into structured, policy-relevant insights.
+    </p>
+    <div class="hero-ctas">
+      <a href="https://chavvaharshini236.medium.com" target="_blank" class="btn btn-primary">Read My Work</a>
+      <a href="mailto:chavvaharshini236@gmail.com" class="btn btn-outline">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-number">5+</div>
+      <div class="stat-label">Published Analyses</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">Top 5%</div>
+      <div class="stat-label">MA Political Science</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">OSINT</div>
+      <div class="stat-label">Certified · Risk Intelligence</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">S. Asia</div>
+      <div class="stat-label">Regional Research Focus</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-left">
+    <div class="section-label">About</div>
+    <h2 class="section-title">Research-Driven Analyst</h2>
+    <p class="about-text">
+      I am a postgraduate researcher in Political Science, ranked in the top 5% at Bangalore University, with a specialization in geopolitical risk, South Asian affairs, and open-source intelligence. My work sits at the intersection of academic rigor and policy relevance.
+    </p>
+    <p class="about-text">
+      I produce structured intelligence briefs, risk snapshots, and policy articles that translate complex regional dynamics into clear, evidence-based assessments. I have a foundational OSINT certification and apply systematic source evaluation to monitor early political signals and emerging threats.
+    </p>
+    <p class="about-text">
+      Beyond research, I am committed to civic engagement — contributing audiobooks with LibriVox, community volunteering, and public advocacy for human rights and democratic participation.
+    </p>
+  </div>
+  <div class="about-right">
+    <div class="section-label">Research Focus Areas</div>
+    <div class="interests-grid">
+      <div class="interest-tag">South Asian Geopolitics</div>
+      <div class="interest-tag">BRICS &amp; Multilateralism</div>
+      <div class="interest-tag">BIMSTEC &amp; G20</div>
+      <div class="interest-tag">Digital Diplomacy</div>
+      <div class="interest-tag">OSINT &amp; Risk Analysis</div>
+      <div class="interest-tag">Political Economy</div>
+      <div class="interest-tag">Human Rights &amp; Civic Space</div>
+      <div class="interest-tag">Information Warfare</div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section class="articles" id="articles">
+  <div class="section-label">Published Writing</div>
+  <h2 class="section-title">Analytical Work &amp; Policy Commentary</h2>
+  <div class="articles-grid">
+
+    <div class="article-card">
+      <div class="article-date">Dec 2025</div>
+      <div class="article-title">Modern Vision of Age-Old Economic Cooperation</div>
+      <p class="article-excerpt">Globalisation has appointed new ways to interlink countries, but economic interdependency is not new. An examination of contemporary economic coordination through historical and institutional frameworks.</p>
+      <a href="https://chavvaharshini236.medium.com" target="_blank" class="article-link">Read on Medium →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="article-date">Dec 2025</div>
+      <div class="article-title">Timeless Diplomacy, Modern Tools: How Countries Are Using Digital Tools as Leverage in 2025</div>
+      <p class="article-excerpt">Diplomacy has always been a timeless practice. Even in ancient kingdoms, messages were carried through envoys along long trade routes. Today, the medium has changed — and so has the leverage.</p>
+      <a href="https://chavvaharshini236.medium.com" target="_blank" class="article-link">Read on Medium →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="article-date">Dec 2025</div>
+      <div class="article-title">Detecting Early Protest Signals Using OSINT: A Practical Intelligence Framework</div>
+      <p class="article-excerpt">A structured framework for identifying early indicators of political unrest through open-source intelligence — bridging academic methodology with operational risk analysis.</p>
+      <a href="https://chavvaharshini236.medium.com" target="_blank" class="article-link">Read on Medium →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="article-date">Dec 2025</div>
+      <div class="article-title">South Asia Geopolitical Risk Brief — Intelligence Snapshot</div>
+      <p class="article-excerpt">An intelligence-style brief covering the key political, economic, and climate risks shaping the South Asian region. Structured assessment of near-term threats and stability indicators.</p>
+      <a href="https://chavvaharshini236.medium.com" target="_blank" class="article-link">Read on Medium →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="article-date">Oct 2025</div>
+      <div class="article-title">Youngest: On Moral Justification and Identity</div>
+      <p class="article-excerpt">Working out the terms of moral justification is an unending task — a lifelong attempt to understand what makes us who we are, and why we act the way we do.</p>
+      <a href="https://chavvaharshini236.medium.com" target="_blank" class="article-link">Read on Medium →</a>
+    </div>
+
+    <div class="article-card" style="border: 1px dashed rgba(201,168,76,.3); background: rgba(201,168,76,.03);">
+      <div class="article-date">In Progress</div>
+      <div class="article-title">BRICS &amp; BIMSTEC: Global Ambition vs Regional Strategy</div>
+      <p class="article-excerpt">Examining how two distinct multilateral frameworks reflect shifting power dynamics — one pursuing global realignment, the other building regional connectivity. A comparative analytical piece.</p>
+      <span style="margin-top:1.2rem; display:inline-block; font-family:'DM Mono',monospace; font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold);">Coming Soon</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <div class="section-label" style="color:var(--gold)">Capabilities</div>
+  <h2 class="section-title">Skills &amp; Expertise</h2>
+  <div class="skills-container">
+    <div class="skill-group">
+      <div class="skill-group-title">Research &amp; Intelligence</div>
+      <div class="skill-item">Geopolitical Risk Assessment</div>
+      <div class="skill-item">OSINT (Open-Source Intelligence)</div>
+      <div class="skill-item">Source Triangulation</div>
+      <div class="skill-item">Political Signal Monitoring</div>
+      <div class="skill-item">Qualitative Research Methods</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Writing &amp; Communication</div>
+      <div class="skill-item">Intelligence Briefs &amp; Risk Snapshots</div>
+      <div class="skill-item">Policy Articles &amp; Commentary</div>
+      <div class="skill-item">Academic &amp; Analytical Writing</div>
+      <div class="skill-item">Public Speaking</div>
+      <div class="skill-item">Research Synthesis</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Regional Expertise</div>
+      <div class="skill-item">South Asian Politics &amp; Security</div>
+      <div class="skill-item">BRICS &amp; Multilateral Frameworks</div>
+      <div class="skill-item">BIMSTEC &amp; Bay of Bengal Region</div>
+      <div class="skill-item">India's Foreign Policy</div>
+      <div class="skill-item">Indo-Pacific Dynamics</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Languages</div>
+      <div class="skill-item">English — Fluent</div>
+      <div class="skill-item">Telugu — Native</div>
+      <div class="skill-item">Hindi — Fluent</div>
+      <div class="skill-item">Spanish — Beginner</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="section-label">Experience</div>
+  <h2 class="section-title">Professional &amp; Research Track</h2>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-date">2024 – Present</div>
+      <div class="timeline-content">
+        <div class="timeline-role">Independent Geopolitical Researcher &amp; Analyst</div>
+        <div class="timeline-org">Self-Directed · Remote</div>
+        <ul class="timeline-bullets">
+          <li>Produces structured geopolitical risk briefs and intelligence snapshots on South Asian developments</li>
+          <li>Applies OSINT methodologies to monitor political signals and regional shifts</li>
+          <li>Authors policy articles on multilateral institutions, digital diplomacy, and political risk</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">May 2024</div>
+      <div class="timeline-content">
+        <div class="timeline-role">Technical Writing &amp; Strategy Intern</div>
+        <div class="timeline-org">Gerby Rogers</div>
+        <ul class="timeline-bullets">
+          <li>Produced research-driven content and communication strategy</li>
+          <li>Delivered clear, structured written outputs under deadline pressure</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">March 2024</div>
+      <div class="timeline-content">
+        <div class="timeline-role">Fundraising &amp; Research Intern</div>
+        <div class="timeline-org">PAWS (Nonprofit)</div>
+        <ul class="timeline-bullets">
+          <li>Drafted stakeholder communications and research summaries</li>
+          <li>Contributed 40% of total funds raised through targeted outreach</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">2023 – 2024</div>
+      <div class="timeline-content">
+        <div class="timeline-role">Public Speaking Educator</div>
+        <div class="timeline-org">PlanetSpark Ed</div>
+        <ul class="timeline-bullets">
+          <li>Designed structured lessons on communication, civic responsibility, and critical thinking</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">2022 – 2024</div>
+      <div class="timeline-content">
+        <div class="timeline-role">M.A. Political Science — Top 5%</div>
+        <div class="timeline-org">Bangalore University</div>
+        <ul class="timeline-bullets">
+          <li>Research: LPG reforms, Palestine conflict, UGCMS governance evaluation</li>
+          <li>Focus areas: International Relations, Political Economy, Comparative Politics</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-label">Contact</div>
+  <h2 class="section-title">Let's Connect</h2>
+  <p class="contact-sub">Open to research collaborations, geopolitical risk roles, professor outreach, and fellowship opportunities.</p>
+  <div class="contact-links">
+    <a href="mailto:chavvaharshini236@gmail.com" class="btn btn-primary">Email Me</a>
+    <a href="https://chavvaharshini236.medium.com" target="_blank" class="btn btn-outline">Read My Work</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Harshini Chavva · Geopolitical Research Analyst · Hyderabad, India</p>
+</footer>
+
+</body>
+</html>
